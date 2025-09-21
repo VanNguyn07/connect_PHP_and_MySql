@@ -1,54 +1,20 @@
-<?php 
+<?php
+include_once("../connect.php");
 
+$idTL = isset($_GET['idTL']) ? intval($_GET['idTL']) : 0;
+
+if ($idTL > 0) {
+    // Xóa bản ghi
+    $stmt = mysqli_prepare($connect, "DELETE FROM theloai WHERE idTL = ?");
+    mysqli_stmt_bind_param($stmt, "i", $idTL);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // Chuyển hướng về lại danh sách với thông báo
+    echo "<script>alert('Xóa thành công'); window.location.href='readHandle.php';</script>";
+    exit;
+} else {
+    echo "<script>alert('ID không hợp lệ'); window.location.href='readHandle.php';</script>";
+    exit;
+}
 ?>
-
-
-<?php 
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect PHP And My Sql</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-    <form action="admin/readHandle.php" method="post" enctype="multipart/form-data" name="fomr1">
-        <table>
-            <tr>
-                <td><label for="nameType"> Name Type</label></td>
-                <td class="col2AllRow"><input type="text" name="nameType" id="nameType"></td>
-            </tr>
-
-            <tr>
-                <td><label for="numericalOrder">Numerical Order</label></td>
-                <td class="col2AllRow" ><input type="text" name="numericalOrder" id="numericalOrder"></td>
-            </tr>
-
-            <tr>
-                <td><label for="AnHien">Hide Show</label></td>
-                <td class="col2AllRow" ><select name="AnHien" id="AnHien">
-                    <option value="0">Hide</option>
-                    <option value="1">Show</option>
-                </select></td>
-            </tr>
-
-            <tr>
-                <td><label for="icon">Icon</label></td>
-                <td class="col2AllRow" ><input type="file" name="icon" id="icon"></td>
-            </tr>
-            
-            <tr>
-                <td id="col1_row5"> </td>
-                <td class="col2AllRow" colspan="2">
-                    <button type="reset">Delete</button>
-                    <button type="submit">Cancel</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</body>
-</html>
