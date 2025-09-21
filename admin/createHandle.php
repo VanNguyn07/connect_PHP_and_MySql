@@ -50,15 +50,16 @@ $err = mysqli_error($connect);
 mysqli_stmt_close($stmt);
 
 if ($ok) {
-    header("Location: readHandle.php");
-    echo "Thêm thành công";
+    // header("Location: readHandle.php?msg=" . urlencode("Thêm mới thành công"));
+    echo "<script>alert('Added sucessfully in database'); window.location.href='readHandle.php';</script>";
+    
     exit;
 } else {
     if ($iconName && file_exists($uploadDirFs . $iconName)) {
         @unlink($uploadDirFs . $iconName);
     }
-    header("Location: readHandle.php");
-    echo "Lỗi thêm mới: $err";
+    // header("Location: readHandle.php?msg=" . urlencode("Lỗi thêm mới: $err"));
+    echo "<script>alert('Lỗi thêm mới: $err'); window.location.href='readHandle.php';</script>";
     exit;
 }
 ?>

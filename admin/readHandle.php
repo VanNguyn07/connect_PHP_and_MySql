@@ -20,6 +20,7 @@ if(!$result) {
 </head>
 <body>
 
+
     <form action="admin/readHandle.php" method="post" enctype="multipart/form-data" name="fomr1">
         <table>
             <tr>
