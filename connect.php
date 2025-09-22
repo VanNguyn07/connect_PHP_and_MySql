@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect('localhost', 'root', '', 'tintuc');
+$connect = mysqli_connect('localhost', 'root', 'Nguyen31072006!', 'tintuc');
 //Nếu có lỗi xảy ra thì dừng đoạn mã và in thông báo lỗi
 if(!$connect){
     die("Error: Could not connect to the database. An error" . mysqli_connect_error(). "ocurred.");
